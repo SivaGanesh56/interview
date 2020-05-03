@@ -121,6 +121,10 @@ class NonTeachingStaff extends Staff{
 		double dec = (this.salary*this.experience)/100;
 		return this.salary+dec;
 	}
+	
+	
+
+	
 }
 
 /*

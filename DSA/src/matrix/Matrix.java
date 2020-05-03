@@ -307,7 +307,7 @@ public class Matrix {
     }
     
     //Kadanes Algorithm --> Helper Function
-	public  int maxSubArray(int[] nums) {
+	private  int maxSubArray(int[] nums) {
         if(nums.length==0) return 0;
         int prevMax = nums[0];
         int currMax = nums[0];
@@ -371,6 +371,49 @@ public class Matrix {
             }
         }
 		arr[rs-1][cs] = temp1;
+	}
+	
+	//Given a Boolean Matrix, find k such that all elements in k’th row are 0 and k’th column are 1
+	public int validMatrix(int[][] arr) {
+		if(arr==null || arr.length==0 || arr[0].length==0) return 0;
+		int rows = arr.length-1;
+		int cols = arr[0].length-1;
+		int i = 0;
+		int j = 0;
+		while(i<=rows && j<=cols) {
+			if(isValidRow(arr,i,cols) && isValidCol(arr, j, rows)) {
+				return i;
+			}
+			i++;
+			j++;
+		}
+		return -1;
+	}
+	
+	//Helper Function
+	private boolean isValidRow(int[][] arr,int rowNumber,int cols) {
+		for(int i=0;i<cols;i++) {
+			if(i==rowNumber) {
+				continue;
+			}
+			if(arr[rowNumber][i]!=0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	//Helper Function
+	private boolean isValidCol(int[][] arr,int colNumber,int rows) {
+		for(int i=0;i<rows;i++) {
+			if(i==colNumber) {
+				continue;
+			}
+			if(arr[i][colNumber]!=1) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	

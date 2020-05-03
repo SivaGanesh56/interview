@@ -55,10 +55,12 @@ public class Test {
 //		System.out.println(arr.MaxBinarySubArray(a19));
 //		int []a20 = new int[] {12, 23, 34, 12, 12, 23, 12, 45};
 //		arr.oddOccurrrences(a20);
-		int []a21 = new int[] {0,1,2,0,1,2,0,1,2};
-		arr.sortElements(a21);
-		for(int i=0;i<a21.length;i++) {
-			System.out.print(a21[i]+" ");
-		}
+//		int []a21 = new int[] {0,1,2,0,1,2,0,1,2};
+//		arr.sortElements(a21);
+//		for(int i=0;i<a21.length;i++) {
+//			System.out.print(a21[i]+" ");
+//		}
+		int []a22 = new int[] {1,2,3,4,5,3,3,2};
+		System.out.println(arr.largestArea(a22));
 	}
 }

@@ -1,12 +1,12 @@
 package arrays;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Stack;
 
 public class Array {
 	
@@ -371,7 +371,52 @@ public class Array {
 		}
 	}
 	
+	//Largest Rectangle in a Histogram -- BruteForce/Naive Apporach
+	private int largestAreaBruteForce(int[] a) {
+		int maxArea = 0;
+		for(int i=0;i<a.length;i++) {
+			int count = 0;
+			int j = i;
+			while(j>=0 && a[j]>=a[i]) {
+				j--;
+				count++;
+			}
+			j = i;
+			while(j<a.length && a[j]>=a[i]) {
+				j++;
+				count++;
+			}
+			--count;
+			int area = a[i]*count;
+			maxArea = Math.max(maxArea, area);
+		}
+		return maxArea;
+	}
 	
+	//Largest Rectangle in a Histogram
+	public int largestArea(int[] hist) {
+		Stack<Integer> st = new Stack<>();
+		int maxArea = 0;
+		int i = 0;
+		while(i<hist.length) {
+			if(st.isEmpty() || hist[st.peek()]<=hist[i]) {
+				st.add(i);
+				i++;
+			}else {
+				int curr = st.pop();
+				int val = (st.isEmpty())? (i-1) : (i-1-st.peek());
+				int area = hist[curr]* val;
+				maxArea = Math.max(area, maxArea);
+			}
+		}
+		while(!st.isEmpty()) {
+			int curr = st.pop();
+			int val = (st.isEmpty())? (i-1) : (i-1-st.peek());
+			int area = hist[curr]* val;
+			maxArea = Math.max(area, maxArea);
+		}
+		return maxArea;
+	}
 	
 	
 }
